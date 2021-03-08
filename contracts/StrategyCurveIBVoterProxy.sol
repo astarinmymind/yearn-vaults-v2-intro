@@ -2,7 +2,9 @@
 pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
-import "./BaseStrategy.sol";
+// prefer import from libraries
+// import "./BaseStrategy.sol";
+import {BaseStrategy} from "@yearnvaults/contracts/BaseStrategy.sol";
 import {
     SafeERC20,
     SafeMath,
