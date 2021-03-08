@@ -310,14 +310,17 @@ contract StrategyCurveIBVoterProxy is BaseStrategy {
 
     // setter functions
 
-    function setProxy(address _proxy) external onlyAuthorized {
+    // change modifier from onlyAuthorized to onlyGovernance to make access as strict as possible
+    // good practice: if must give control, limit control by only allowing a bool parameter
+    function setProxy(address _proxy) external onlyGovernance {
         curveProxy = ICurveStrategyProxy(_proxy);
         want.safeApprove(address(curveProxy), uint256(-1));
     }
 
+    // change modifier from onlyAuthorized to onlyGovernance to make access as strict as possible
     function setCrvRouter(address router, address[] calldata _path)
         external
-        onlyAuthorized
+        onlyGovernance
     {
         crvRouter = router;
         crvPath = _path;
