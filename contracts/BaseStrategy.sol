@@ -272,8 +272,9 @@ abstract contract BaseStrategy {
                 msg.sender == strategist ||
                 msg.sender == governance() ||
                 msg.sender == vault.guardian() ||
-                msg.sender == vault.management() ||
-                !Address.isContract(msg.sender),
+                msg.sender == vault.management(),
+                // this line allows any eoa to call functions such as harvest, which is not allowed
+                // !Address.isContract(msg.sender),    
             "!authorized"
         );
         _;
